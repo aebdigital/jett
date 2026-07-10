@@ -1,15 +1,17 @@
 import Reveal from "./Reveal";
 import { REVIEWS, RATING } from "./reviews-data";
 import { GoogleIcon, Stars } from "./GoogleBits";
+import { t, type Lang } from "@/lib/i18n";
 
-export default function Reviews() {
+export default function Reviews({ lang = "sk" }: { lang?: Lang }) {
+  const d = t(lang);
   return (
     <section id="recenzie" className="mx-auto max-w-7xl px-5 py-24 sm:px-8">
       <Reveal>
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Recenzie</p>
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">{d.reviews.eyebrow}</p>
         <div className="mt-3 flex flex-wrap items-end justify-between gap-6">
           <h2 className="max-w-2xl text-3xl font-bold text-white sm:text-5xl">
-            Klienti, ktorí sa vracajú
+            {d.reviews.h2}
           </h2>
           <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-ink-2 px-5 py-3.5">
             <GoogleIcon className="h-7 w-7" />
@@ -18,7 +20,7 @@ export default function Reviews() {
                 <b className="text-lg text-white">{RATING.value}</b>
                 <Stars className="h-4 w-4" />
               </div>
-              <p className="text-xs text-neutral-400">{RATING.count} recenzií na Google</p>
+              <p className="text-xs text-neutral-400">{RATING.count} {d.reviews.onGoogle}</p>
             </div>
           </div>
         </div>
@@ -30,7 +32,7 @@ export default function Reviews() {
             <figure className="rounded-2xl border border-white/10 bg-ink-2 p-6 transition hover:border-gold/40">
               <div className="flex items-center justify-between gap-3">
                 <Stars className="h-3.5 w-3.5" />
-                {r.isNew && <span className="rounded-md bg-gold/15 px-2 py-0.5 text-[11px] font-semibold text-gold-2">Nové</span>}
+                {r.isNew && <span className="rounded-md bg-gold/15 px-2 py-0.5 text-[11px] font-semibold text-gold-2">{d.reviews.isNew}</span>}
               </div>
               <blockquote className="mt-3 text-sm leading-relaxed text-neutral-200">„{r.text}“</blockquote>
               <figcaption className="mt-4 flex items-center gap-3">

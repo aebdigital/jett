@@ -3,8 +3,10 @@ import ReviewTicker from "./ReviewTicker";
 import HeroParallax from "./HeroParallax";
 import { GoogleIcon, Stars } from "./GoogleBits";
 import { RATING } from "./reviews-data";
+import { t, type Lang } from "@/lib/i18n";
 
-export default function Hero() {
+export default function Hero({ lang = "sk" }: { lang?: Lang }) {
+  const d = t(lang);
   return (
     <section className="relative flex min-h-[92vh] items-center overflow-hidden">
       <HeroParallax />
@@ -20,47 +22,43 @@ export default function Hero() {
           >
             <GoogleIcon className="h-4.5 w-4.5" />
             <Stars className="h-3.5 w-3.5" />
-            <span><b className="text-white">{RATING.value}</b> · {RATING.count} recenzií na Google</span>
+            <span><b className="text-white">{RATING.value}</b> · {RATING.count} {d.hero.reviewsOnGoogle}</span>
           </a>
         </Reveal>
 
         <Reveal delay={140}>
           <h1 className="max-w-3xl text-4xl font-bold leading-[1.08] text-white sm:text-6xl">
-            Letiskové transfery <span className="text-gold">bez starostí</span>
+            {d.hero.h1a}<span className="text-gold">{d.hero.h1b}</span>
           </h1>
         </Reveal>
         <Reveal delay={280}>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-neutral-300">
-            Bratislava · Schwechat · Budapešť · Praha. Fixné ceny bez prekvapení,
-            prémiová Toyota Camry Hybrid a vodiči, na ktorých sa spoľahnete —
-            nech letíte kedykoľvek.
-          </p>
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-neutral-300">{d.hero.lead}</p>
         </Reveal>
 
         <Reveal delay={420}>
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <a href="#rezervacia" className="rounded-full bg-gold px-8 py-4 text-base font-semibold text-ink shadow-lg shadow-gold/20 transition hover:bg-gold-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold">
-              Rezervovať jazdu
+              {d.hero.ctaBook}
             </a>
             <a href="#cennik" className="rounded-full border border-white/25 px-8 py-4 text-base font-medium text-white transition hover:border-gold hover:text-gold focus-visible:outline-2 focus-visible:outline-gold">
-              Pozrieť cenník
+              {d.hero.ctaPrices}
             </a>
           </div>
         </Reveal>
 
         <Reveal delay={560}>
           <div className="mt-12 inline-flex max-w-xl flex-wrap items-center gap-x-3 gap-y-1 rounded-2xl border border-gold/25 bg-ink-2/80 px-5 py-4 backdrop-blur">
-            <span className="rounded-md bg-gold px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-ink">Akcia</span>
+            <span className="rounded-md bg-gold px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-ink">{d.hero.promoTag}</span>
             <p className="text-sm text-neutral-200">
-              Objednávka 2 týždne vopred: <b className="text-gold-2">Bratislava centrum – Schwechat len 51 €</b>
-              <span className="text-neutral-400"> · pre nových zákazníkov bez príplatkov</span>
+              {d.hero.promoA}<b className="text-gold-2">{d.hero.promoB}</b>
+              <span className="text-neutral-400">{d.hero.promoC}</span>
             </p>
           </div>
         </Reveal>
         </div>
 
         <Reveal delay={700} className="hidden justify-self-end lg:block">
-          <ReviewTicker />
+          <ReviewTicker lang={lang} />
         </Reveal>
       </div>
     </section>

@@ -2,9 +2,10 @@
 import { useEffect, useState } from "react";
 import { REVIEWS } from "./reviews-data";
 import { GoogleIcon, Stars } from "./GoogleBits";
+import { t, type Lang } from "@/lib/i18n";
 
 // Single review card in the hero that crossfades through all reviews.
-export default function ReviewTicker() {
+export default function ReviewTicker({ lang = "sk" }: { lang?: Lang }) {
   const [idx, setIdx] = useState(0);
   const [visible, setVisible] = useState(true);
 
@@ -27,7 +28,7 @@ export default function ReviewTicker() {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <GoogleIcon className="h-5 w-5" />
-          <span className="text-sm font-semibold text-white">Recenzie Google</span>
+          <span className="text-sm font-semibold text-white">{t(lang).hero.googleReviews}</span>
         </div>
         <Stars className="h-3.5 w-3.5" />
       </div>

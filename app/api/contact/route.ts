@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
+// Standard aebdigital contact pipeline: SMTP2GO API with
+// CONTACT_FORM_RECIPIENT / SMTP2GO_API_KEY / SMTP2GO_SENDER env vars,
+// and a Reply-To custom header so replies go straight to the customer.
 async function sendEmailViaSMTP2GO(payload: {
   api_key: string;
   sender: string;
@@ -7,6 +10,7 @@ async function sendEmailViaSMTP2GO(payload: {
   subject: string;
   text_body: string;
   html_body: string;
+  custom_headers?: { header: string; value: string }[];
 }): Promise<{ success: boolean }> {
   const res = await fetch("https://api.smtp2go.com/v3/email/send", {
     method: "POST",
@@ -33,10 +37,11 @@ export async function POST(request: NextRequest) {
     }
 
     const apiKey = process.env.SMTP2GO_API_KEY;
-    const businessEmail = process.env.BUSINESS_EMAIL;
-    const fromEmail = process.env.SMTP2GO_FROM_EMAIL;
-    if (!apiKey || !businessEmail || !fromEmail) {
-      console.error("Missing env vars: SMTP2GO_API_KEY, BUSINESS_EMAIL, or SMTP2GO_FROM_EMAIL");
+    const sender = process.env.SMTP2GO_SENDER;
+    const recipient = process.env.CONTACT_FORM_RECIPIENT;
+
+    if (!apiKey || !sender || !recipient) {
+      console.error("Missing env vars: SMTP2GO_API_KEY, SMTP2GO_SENDER, or CONTACT_FORM_RECIPIENT");
       return NextResponse.json({ message: "Konfiguračná chyba servera." }, { status: 500 });
     }
 
@@ -54,11 +59,13 @@ export async function POST(request: NextRequest) {
 
     const sent = await sendEmailViaSMTP2GO({
       api_key: apiKey,
-      sender: fromEmail,
-      to: [businessEmail],
+      sender,
+      to: [recipient],
       subject: `Rezervácia: ${to} — ${date} (${name})`,
       text_body,
       html_body,
+      // reply lands directly in the customer's inbox thread
+      custom_headers: [{ header: "Reply-To", value: String(email) }],
     });
 
     if (!sent.success) {
