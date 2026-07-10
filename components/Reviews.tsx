@@ -1,0 +1,53 @@
+import Reveal from "./Reveal";
+import { REVIEWS, RATING } from "./reviews-data";
+import { GoogleIcon, Stars } from "./GoogleBits";
+
+export default function Reviews() {
+  return (
+    <section id="recenzie" className="mx-auto max-w-7xl px-5 py-24 sm:px-8">
+      <Reveal>
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Recenzie</p>
+        <div className="mt-3 flex flex-wrap items-end justify-between gap-6">
+          <h2 className="max-w-2xl text-3xl font-bold text-white sm:text-5xl">
+            Klienti, ktorí sa vracajú
+          </h2>
+          <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-ink-2 px-5 py-3.5">
+            <GoogleIcon className="h-7 w-7" />
+            <div>
+              <div className="flex items-center gap-2">
+                <b className="text-lg text-white">{RATING.value}</b>
+                <Stars className="h-4 w-4" />
+              </div>
+              <p className="text-xs text-neutral-400">{RATING.count} recenzií na Google</p>
+            </div>
+          </div>
+        </div>
+      </Reveal>
+
+      <div className="mt-12 columns-1 gap-4 sm:columns-2 lg:columns-3 [&>*]:mb-4">
+        {REVIEWS.map((r, i) => (
+          <Reveal key={r.name + r.when} delay={(i % 3) * 100} className="break-inside-avoid">
+            <figure className="rounded-2xl border border-white/10 bg-ink-2 p-6 transition hover:border-gold/40">
+              <div className="flex items-center justify-between gap-3">
+                <Stars className="h-3.5 w-3.5" />
+                {r.isNew && <span className="rounded-md bg-gold/15 px-2 py-0.5 text-[11px] font-semibold text-gold-2">Nové</span>}
+              </div>
+              <blockquote className="mt-3 text-sm leading-relaxed text-neutral-200">„{r.text}“</blockquote>
+              <figcaption className="mt-4 flex items-center gap-3">
+                <span className="grid h-9 w-9 flex-none place-items-center rounded-full bg-gold/20 text-sm font-bold text-gold">
+                  {r.name.charAt(0).toUpperCase()}
+                </span>
+                <div>
+                  <p className="text-sm font-semibold text-white">{r.name}</p>
+                  <p className="flex items-center gap-1.5 text-xs text-neutral-400">
+                    <GoogleIcon className="h-3 w-3" /> Google · 5/5 · {r.when}
+                  </p>
+                </div>
+              </figcaption>
+            </figure>
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
+}

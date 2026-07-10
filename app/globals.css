@@ -1,26 +1,63 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ink: #12161b;
+  --color-ink-2: #192025;
+  --color-ink-3: #232b32;
+  --color-gold: #d3b86f;
+  --color-gold-2: #e6d3a0;
+  --color-paper: #f7f5f0;
+  --font-heading: var(--font-space-grotesk);
+  --font-body: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-ink);
+  color: #e8e6e1;
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+::selection { background: #d3b86f; color: #12161b; }
+
+/* scroll fade-in-up */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.2, 0.6, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.6, 0.2, 1);
+  will-change: opacity, transform;
+}
+.reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* splash intro logo */
+.intro-logo {
+  animation: introLogo 1.1s cubic-bezier(0.2, 0.6, 0.2, 1) both;
+}
+@keyframes introLogo {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .intro-logo { animation: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* thin gold scrollbar accent */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-thumb { background: #2c343c; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #d3b86f; }
+::-webkit-scrollbar-track { background: transparent; }
