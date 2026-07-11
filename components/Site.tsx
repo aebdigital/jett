@@ -10,6 +10,7 @@ import Gallery from "./Gallery";
 import BookingForm from "./BookingForm";
 import Footer from "./Footer";
 import FloatingCTA from "./FloatingCTA";
+import FloatingLang from "./FloatingLang";
 import Popup from "./Popup";
 
 export default function Site({ lang }: { lang: Lang }) {
@@ -27,6 +28,7 @@ export default function Site({ lang }: { lang: Lang }) {
         <BookingForm lang={lang} />
       </main>
       <FloatingCTA lang={lang} />
+      <FloatingLang lang={lang} />
       <Popup lang={lang} />
       <Footer lang={lang} />
     </>
