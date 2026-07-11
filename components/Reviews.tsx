@@ -1,5 +1,5 @@
 import Reveal from "./Reveal";
-import { REVIEWS, RATING } from "./reviews-data";
+import { REVIEWS, RATING, reviewText, reviewWhen } from "./reviews-data";
 import { GoogleIcon, Stars } from "./GoogleBits";
 import { t, type Lang } from "@/lib/i18n";
 
@@ -34,7 +34,7 @@ export default function Reviews({ lang = "sk" }: { lang?: Lang }) {
                 <Stars className="h-3.5 w-3.5" />
                 {r.isNew && <span className="rounded-md bg-gold/15 px-2 py-0.5 text-[11px] font-semibold text-gold-2">{d.reviews.isNew}</span>}
               </div>
-              <blockquote className="mt-3 text-sm leading-relaxed text-neutral-200">„{r.text}“</blockquote>
+              <blockquote className="mt-3 text-sm leading-relaxed text-neutral-200">„{reviewText(r, lang)}“</blockquote>
               <figcaption className="mt-4 flex items-center gap-3">
                 <span className="grid h-9 w-9 flex-none place-items-center rounded-full bg-gold/20 text-sm font-bold text-gold">
                   {r.name.charAt(0).toUpperCase()}
@@ -42,7 +42,7 @@ export default function Reviews({ lang = "sk" }: { lang?: Lang }) {
                 <div>
                   <p className="text-sm font-semibold text-white">{r.name}</p>
                   <p className="flex items-center gap-1.5 text-xs text-neutral-400">
-                    <GoogleIcon className="h-3 w-3" /> Google · 5/5 · {r.when}
+                    <GoogleIcon className="h-3 w-3" /> Google · 5/5 · {reviewWhen(r, lang)}
                   </p>
                 </div>
               </figcaption>

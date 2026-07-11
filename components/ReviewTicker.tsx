@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { REVIEWS } from "./reviews-data";
+import { REVIEWS, reviewText, reviewWhen } from "./reviews-data";
 import { GoogleIcon, Stars } from "./GoogleBits";
 import { t, type Lang } from "@/lib/i18n";
 
@@ -34,14 +34,14 @@ export default function ReviewTicker({ lang = "sk" }: { lang?: Lang }) {
       </div>
 
       <div className={`mt-4 min-h-[120px] transition-opacity duration-300 ${visible ? "opacity-100" : "opacity-0"}`}>
-        <p className="text-sm leading-relaxed text-neutral-200">„{r.text}“</p>
+        <p className="text-sm leading-relaxed text-neutral-200">„{reviewText(r, lang)}“</p>
         <div className="mt-4 flex items-center gap-3">
           <span className="grid h-9 w-9 flex-none place-items-center rounded-full bg-gold/20 text-sm font-bold text-gold">
             {r.name.charAt(0).toUpperCase()}
           </span>
           <div>
             <p className="text-sm font-semibold text-white">{r.name}</p>
-            <p className="text-xs text-neutral-400">5/5 · {r.when}</p>
+            <p className="text-xs text-neutral-400">5/5 · {reviewWhen(r, lang)}</p>
           </div>
         </div>
       </div>

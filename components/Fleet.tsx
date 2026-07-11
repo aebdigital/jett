@@ -1,8 +1,7 @@
 import Image from "next/image";
 import Reveal from "./Reveal";
 import { t, type Lang } from "@/lib/i18n";
-
-const ICONS = ["👤", "⚡", "⚙", "✦", "❄", "✓"];
+import { FLEET_ICONS } from "./FleetIcons";
 
 export default function Fleet({ lang = "sk" }: { lang?: Lang }) {
   const d = t(lang);
@@ -27,12 +26,15 @@ export default function Fleet({ lang = "sk" }: { lang?: Lang }) {
           <p className="mt-5 max-w-lg leading-relaxed text-neutral-300">{d.fleet.lead}</p>
 
           <ul className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3">
-            {d.fleet.specs.map((s, i) => (
-              <li key={s} className="rounded-xl border border-white/10 bg-ink px-4 py-3.5 text-sm text-neutral-200">
-                <span className="mr-2 text-gold">{ICONS[i]}</span>
-                {s}
-              </li>
-            ))}
+            {d.fleet.specs.map((s, i) => {
+              const Icon = FLEET_ICONS[i];
+              return (
+                <li key={s} className="flex items-center gap-3 rounded-xl border border-white/10 bg-ink px-4 py-3.5 text-sm text-neutral-200">
+                  <Icon className="h-6 w-6 flex-none text-gold" />
+                  {s}
+                </li>
+              );
+            })}
           </ul>
 
           <a href="#rezervacia" className="mt-9 inline-block rounded-full bg-gold px-8 py-4 font-semibold text-ink transition hover:bg-gold-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold">

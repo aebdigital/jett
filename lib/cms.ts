@@ -69,15 +69,23 @@ export interface BlogPost {
   reading_time: string;
   cover_image: string | null;
   content_html: string;
+  title_en?: string | null;
+  excerpt_en?: string | null;
+  content_html_en?: string | null;
   is_published: boolean;
   created_at: string;
 }
+
+// EN falls back to Slovak when a translation is missing.
+export const postTitle = (p: BlogPost, lang: Lang) => (lang === "en" && p.title_en ? p.title_en : p.title);
+export const postExcerpt = (p: BlogPost, lang: Lang) => (lang === "en" && p.excerpt_en ? p.excerpt_en : p.excerpt);
+export const postContent = (p: BlogPost, lang: Lang) => (lang === "en" && p.content_html_en ? p.content_html_en : p.content_html);
 
 export async function getPosts(): Promise<BlogPost[]> {
   try {
     const { data, error } = await supabase
       .from("jettransfer_blog_posts")
-      .select("id, slug, title, excerpt, category, reading_time, cover_image, is_published, created_at, content_html")
+      .select("*")
       .eq("is_published", true)
       .order("created_at", { ascending: false });
     if (error || !data) return [];

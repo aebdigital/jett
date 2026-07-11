@@ -24,7 +24,7 @@ export default function Footer({ lang = "sk" }: { lang?: Lang }) {
             <li><a href="tel:+421905300120" className="text-neutral-200 hover:text-gold">+421 905 300 120</a></li>
             <li><a href="mailto:jettransfer@jettransfer.sk" className="text-neutral-200 hover:text-gold">jettransfer@jettransfer.sk</a></li>
             <li className="text-neutral-400">{d.footer.available}</li>
-            <li><a href={lang === "sk" ? "/blog" : "/blog"} className="text-neutral-200 hover:text-gold">{d.footer.blog}</a></li>
+            <li><a href={lang === "sk" ? "/blog" : "/en/blog"} className="text-neutral-200 hover:text-gold">{d.footer.blog}</a></li>
           </ul>
         </div>
 
