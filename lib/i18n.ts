@@ -2,7 +2,7 @@ export type Lang = "sk" | "en";
 
 export const dict = {
   sk: {
-    nav: { sluzby: "Služby", cennik: "Cenník", vozidlo: "Vozidlo", recenzie: "Recenzie", galeria: "Galéria", kontakt: "Kontakt", call: "Zavolať", book: "Objednať transfer", blog: "Blog" },
+    nav: { sluzby: "Služby", cennik: "Cenník", vozidlo: "Vozidlá", recenzie: "Recenzie", galeria: "Galéria", kontakt: "Kontakt", call: "Zavolať", book: "Objednať transfer", blog: "Blog" },
     hero: {
       h1a: "Bratislava Schwechat taxi — ",
       h1b: "spoľahlivá letisková doprava",
@@ -35,7 +35,7 @@ export const dict = {
       parkingArrival: "Vyzdvihnutie pri prílete", parkingDeparture: "Pristavenie pri odlete",
     },
     fleet: {
-      eyebrow: "Vozidlo", h2: "Toyota Camry Hybrid",
+      eyebrow: "Vozidlá", h2: "Toyota Camry Hybrid",
       lead: "Cestujte v tichu a pohodlí. Priestranná limuzína s koženým interiérom, plnou klimatizáciou a hybridným pohonom — pokojná jazda na letisko, pri ktorej si ešte stihnete oddýchnuť.",
       specs: ["4 pasažieri", "Hybrid", "Automat", "Kožený interiér", "Klimatizácia", "Plne poistené"],
       cta: "Objednať transfer",
@@ -63,7 +63,7 @@ export const dict = {
     cta: "Objednať",
   },
   en: {
-    nav: { sluzby: "Services", cennik: "Prices", vozidlo: "Vehicle", recenzie: "Reviews", galeria: "Gallery", kontakt: "Contact", call: "Call us", book: "Book a transfer", blog: "Blog" },
+    nav: { sluzby: "Services", cennik: "Prices", vozidlo: "Vehicles", recenzie: "Reviews", galeria: "Gallery", kontakt: "Contact", call: "Call us", book: "Book a transfer", blog: "Blog" },
     hero: {
       h1a: "Bratislava Schwechat taxi — ",
       h1b: "reliable airport transfers",
@@ -96,7 +96,7 @@ export const dict = {
       parkingArrival: "Pickup on arrival", parkingDeparture: "Drop-off on departure",
     },
     fleet: {
-      eyebrow: "Vehicle", h2: "Toyota Camry Hybrid",
+      eyebrow: "Vehicles", h2: "Toyota Camry Hybrid",
       lead: "Travel in silence and comfort. A spacious saloon with leather interior, full climate control and hybrid drive — a calm ride to the airport where you can still get some rest.",
       specs: ["4 passengers", "Hybrid", "Automatic", "Leather interior", "Air conditioning", "Fully insured"],
       cta: "Book a transfer",
