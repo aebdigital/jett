@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { spaceGrotesk, inter } from "@/lib/fonts";
 import { taxiJsonLd, SITE_URL } from "@/lib/jsonld";
 import SmoothScroll from "@/components/SmoothScroll";
+import CookieConsent from "@/components/CookieConsent";
 import "../globals.css";
 
 export const metadata: Metadata = {
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className="min-h-screen antialiased">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(taxiJsonLd("en")) }} />
         <SmoothScroll />
+        <CookieConsent lang="en" />
         {children}
       </body>
     </html>

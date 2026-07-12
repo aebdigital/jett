@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import BookingForm from "@/components/BookingForm";
+import FloatingLang from "@/components/FloatingLang";
 import { getPosts } from "@/lib/cms";
 
 export const dynamic = "force-dynamic";
@@ -44,6 +46,8 @@ export default async function BlogPage() {
           </div>
         )}
       </main>
+      <BookingForm lang="sk" />
+      <FloatingLang lang="sk" />
       <Footer lang="sk" />
     </>
   );

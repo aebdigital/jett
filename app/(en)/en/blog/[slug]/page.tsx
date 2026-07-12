@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import BookingForm from "@/components/BookingForm";
+import FloatingLang from "@/components/FloatingLang";
 import { getPost, postTitle, postExcerpt, postContent } from "@/lib/cms";
 
 export const dynamic = "force-dynamic";
@@ -42,9 +44,11 @@ export default async function BlogPostPageEn({ params }: { params: Promise<{ slu
         />
         <div className="mt-14 rounded-2xl border border-gold/25 bg-ink-2 p-6 text-center">
           <p className="text-lg font-semibold text-white">Need an airport transfer?</p>
-          <a href="/en#rezervacia" className="mt-4 inline-block rounded-full bg-gold px-8 py-3.5 font-semibold text-ink transition hover:bg-gold-2">Book a transfer</a>
+          <a href="#rezervacia" className="mt-4 inline-block rounded-full bg-gold px-8 py-3.5 font-semibold text-ink transition hover:bg-gold-2">Book a transfer</a>
         </div>
       </main>
+      <BookingForm lang="en" />
+      <FloatingLang lang="en" />
       <Footer lang="en" />
     </>
   );

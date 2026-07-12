@@ -112,3 +112,37 @@ export async function getPost(slug: string): Promise<BlogPost | null> {
 
 export const routeLabel = (r: PriceRoute, lang: Lang) => (lang === "sk" ? r.label_sk : r.label_en || r.label_sk);
 export const routeNote = (r: PriceRoute, lang: Lang) => (lang === "sk" ? r.note_sk : r.note_en ?? r.note_sk);
+
+export const DEFAULT_PHOTOS = [
+  { src: "/images/car-street.jpg", alt: "Vozidlo JetTransfer v uliciach Bratislavy" },
+  { src: "/images/car-cutout-1.png", alt: "Toyota Camry — JetTransfer" },
+  { src: "/images/car-showroom.jpg", alt: "Toyota Camry pripravená na letiskový transfer" },
+  { src: "/images/car-detail-1.jpg", alt: "Detail vozidla JetTransfer" },
+  { src: "/images/car-park.jpg", alt: "Toyota Camry na parkovisku" },
+  { src: "/images/car-front.jpg", alt: "Toyota Camry — predný pohľad" },
+];
+
+export async function getGalleryImages(): Promise<{ src: string; alt: string }[]> {
+  try {
+    const { data, error } = await supabase
+      .from("gallery_images")
+      .select("image_path, alt_text")
+      .eq("site_id", "e67f800d-2e72-492b-888c-08b1beb5bfc4")
+      .order("display_order", { ascending: true });
+
+    if (error || !data || data.length === 0) return DEFAULT_PHOTOS;
+
+    return data.map((img) => {
+      const path = img.image_path || "";
+      const src = path.startsWith("http")
+        ? path
+        : `https://ngifengeshwvyzhqvprn.supabase.co/storage/v1/object/public/site-uploads/${path}`;
+      return {
+        src,
+        alt: img.alt_text || "JetTransfer",
+      };
+    });
+  } catch {
+    return DEFAULT_PHOTOS;
+  }
+}

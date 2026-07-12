@@ -2,7 +2,7 @@ export type Lang = "sk" | "en";
 
 export const dict = {
   sk: {
-    nav: { sluzby: "Služby", cennik: "Cenník", vozidlo: "Vozidlo", recenzie: "Recenzie", galeria: "Galéria", kontakt: "Kontakt", call: "Zavolať", book: "Objednať transfer" },
+    nav: { sluzby: "Služby", cennik: "Cenník", vozidlo: "Vozidlo", recenzie: "Recenzie", galeria: "Galéria", kontakt: "Kontakt", call: "Zavolať", book: "Objednať transfer", blog: "Blog" },
     hero: {
       h1a: "Bratislava Schwechat taxi — ",
       h1b: "spoľahlivá letisková doprava",
@@ -57,13 +57,13 @@ export const dict = {
     footer: {
       about: "Prémiová letisková doprava z Bratislavy — Schwechat, Budapešť, Praha a Brno. Fixné ceny, profesionálni vodiči, k dispozícii 24/7.",
       contact: "Kontakt", airports: "Letiská online", available: "Bratislava · dostupní 24/7",
-      rights: "Všetky práva vyhradené.", privacy: "Ochrana osobných údajov", blog: "Blog",
+      rights: "Všetky práva vyhradené.", privacy: "Ochrana osobných údajov", blog: "Blog", cookies: "Nastavenia cookies",
     },
     blog: { title: "Blog", back: "← Späť na blog", empty: "Zatiaľ žiadne články.", readMore: "Čítať viac" },
     cta: "Objednať",
   },
   en: {
-    nav: { sluzby: "Services", cennik: "Prices", vozidlo: "Vehicle", recenzie: "Reviews", galeria: "Gallery", kontakt: "Contact", call: "Call us", book: "Book a transfer" },
+    nav: { sluzby: "Services", cennik: "Prices", vozidlo: "Vehicle", recenzie: "Reviews", galeria: "Gallery", kontakt: "Contact", call: "Call us", book: "Book a transfer", blog: "Blog" },
     hero: {
       h1a: "Bratislava Schwechat taxi — ",
       h1b: "reliable airport transfers",
@@ -118,7 +118,7 @@ export const dict = {
     footer: {
       about: "Premium airport transfers from Bratislava — Schwechat, Budapest, Prague and Brno. Fixed prices, professional drivers, available 24/7.",
       contact: "Contact", airports: "Airports online", available: "Bratislava · available 24/7",
-      rights: "All rights reserved.", privacy: "Privacy policy", blog: "Blog",
+      rights: "All rights reserved.", privacy: "Privacy policy", blog: "Blog", cookies: "Cookie settings",
     },
     blog: { title: "Blog", back: "← Back to blog", empty: "No articles yet.", readMore: "Read more" },
     cta: "Book now",

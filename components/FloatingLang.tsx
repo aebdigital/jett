@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { isIntroDone } from "./introBus";
 import type { Lang } from "@/lib/i18n";
 
@@ -7,9 +8,11 @@ import type { Lang } from "@/lib/i18n";
 // right so it never collides with the floating "Objednať" pill.
 export default function FloatingLang({ lang = "sk" }: { lang?: Lang }) {
   const [show, setShow] = useState(false);
+  const pathname = usePathname() || "";
+  const isHome = pathname === "/" || pathname === "/en" || pathname === "/en/";
 
   useEffect(() => {
-    if (isIntroDone()) {
+    if (!isHome || isIntroDone()) {
       setShow(true);
       return;
     }
@@ -20,11 +23,28 @@ export default function FloatingLang({ lang = "sk" }: { lang?: Lang }) {
       window.removeEventListener("jt:intro-done", open);
       clearTimeout(safety);
     };
-  }, []);
+  }, [isHome]);
+
+  let otherHref = "/";
+  if (lang === "sk") {
+    if (pathname === "/") {
+      otherHref = "/en";
+    } else {
+      otherHref = `/en${pathname}`;
+    }
+  } else {
+    if (pathname === "/en" || pathname === "/en/") {
+      otherHref = "/";
+    } else if (pathname.startsWith("/en/")) {
+      otherHref = pathname.substring(3);
+    } else {
+      otherHref = pathname;
+    }
+  }
 
   const other = lang === "sk"
-    ? { href: "/en", flag: "🇬🇧", label: "English" }
-    : { href: "/", flag: "🇸🇰", label: "Slovensky" };
+    ? { href: otherHref, flag: "🇬🇧", label: "English" }
+    : { href: otherHref, flag: "🇸🇰", label: "Slovensky" };
 
   return (
     <a

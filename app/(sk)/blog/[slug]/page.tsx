@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import BookingForm from "@/components/BookingForm";
+import FloatingLang from "@/components/FloatingLang";
 import { getPost } from "@/lib/cms";
 
 export const dynamic = "force-dynamic";
@@ -42,9 +44,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         />
         <div className="mt-14 rounded-2xl border border-gold/25 bg-ink-2 p-6 text-center">
           <p className="text-lg font-semibold text-white">Potrebujete transfer na letisko?</p>
-          <a href="/#rezervacia" className="mt-4 inline-block rounded-full bg-gold px-8 py-3.5 font-semibold text-ink transition hover:bg-gold-2">Objednať transfer</a>
+          <a href="#rezervacia" className="mt-4 inline-block rounded-full bg-gold px-8 py-3.5 font-semibold text-ink transition hover:bg-gold-2">Objednať transfer</a>
         </div>
       </main>
+      <BookingForm lang="sk" />
+      <FloatingLang lang="sk" />
       <Footer lang="sk" />
     </>
   );

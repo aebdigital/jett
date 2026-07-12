@@ -1,17 +1,23 @@
 "use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { t, type Lang } from "@/lib/i18n";
 
 export default function Header({ lang = "sk" }: { lang?: Lang }) {
   const d = t(lang);
+  const pathname = usePathname() || "";
+  const isHome = pathname === "/" || pathname === "/en" || pathname === "/en/";
+  const base = isHome ? "" : (lang === "sk" ? "/" : "/en");
+
   const LINKS = [
-    { href: "#sluzby", label: d.nav.sluzby },
-    { href: "#cennik", label: d.nav.cennik },
-    { href: "#vozidlo", label: d.nav.vozidlo },
-    { href: "#recenzie", label: d.nav.recenzie },
-    { href: "#galeria", label: d.nav.galeria },
-    { href: "#kontakt", label: d.nav.kontakt },
+    { href: `${base}#sluzby`, label: d.nav.sluzby },
+    { href: `${base}#cennik`, label: d.nav.cennik },
+    { href: `${base}#vozidlo`, label: d.nav.vozidlo },
+    { href: `${base}#recenzie`, label: d.nav.recenzie },
+    { href: `${base}#galeria`, label: d.nav.galeria },
+    { href: `${base}#kontakt`, label: d.nav.kontakt },
+    { href: lang === "sk" ? "/blog" : "/en/blog", label: d.nav.blog },
   ];
   const otherLang = lang === "sk" ? { href: "/en", label: "EN" } : { href: "/", label: "SK" };
 

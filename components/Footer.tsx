@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import { t, type Lang } from "@/lib/i18n";
 
@@ -45,7 +46,16 @@ export default function Footer({ lang = "sk" }: { lang?: Lang }) {
       <div className="border-t border-white/5">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-5 py-5 text-xs text-neutral-500 sm:px-8">
           <p>© {new Date().getFullYear()} JetTransfer. {d.footer.rights}</p>
-          <a href="/ochrana-osobnych-udajov" className="hover:text-gold">{d.footer.privacy}</a>
+          <div className="flex gap-4 items-center">
+            <a href="/ochrana-osobnych-udajov" className="hover:text-gold">{d.footer.privacy}</a>
+            <span className="text-neutral-700">•</span>
+            <button
+              onClick={() => window.dispatchEvent(new Event("jt:open-cookie-settings"))}
+              className="hover:text-gold transition"
+            >
+              {d.footer.cookies}
+            </button>
+          </div>
         </div>
       </div>
     </footer>
