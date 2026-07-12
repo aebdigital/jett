@@ -25,16 +25,26 @@ async function load(lang: Lang): Promise<ReviewsState> {
     if (!res.ok) return fallback(lang);
     const j = await res.json();
     if (!j.ok || !Array.isArray(j.reviews) || j.reviews.length === 0) return fallback(lang);
+
+    const live: LiveReview[] = j.reviews.map((r: LiveReview & { time?: number }, i: number) => ({
+      name: r.name,
+      when: r.when,
+      text: r.text,
+      isNew: i === 0 && !!r.time && Date.now() / 1000 - r.time < 60 * 60 * 24 * 30,
+    }));
+
+    // The Places API caps at 5 reviews. Top up with the curated ones the API
+    // didn't return (dedupe by author name) so all written reviews show.
+    const seen = new Set(live.map((r) => r.name.trim().toLowerCase()));
+    const extra = REVIEWS
+      .filter((r) => !seen.has(r.name.trim().toLowerCase()))
+      .map((r) => ({ name: r.name, when: reviewWhen(r, lang), text: reviewText(r, lang), isNew: false }));
+
     return {
       rating: typeof j.rating === "number" ? j.rating.toLocaleString(lang === "sk" ? "sk-SK" : "en-GB", { minimumFractionDigits: 1 }) : RATING.value,
       total: j.total ?? RATING.count,
       live: true,
-      reviews: j.reviews.map((r: LiveReview & { time?: number }, i: number) => ({
-        name: r.name,
-        when: r.when,
-        text: r.text,
-        isNew: i === 0 && !!r.time && Date.now() / 1000 - r.time < 60 * 60 * 24 * 30,
-      })),
+      reviews: [...live, ...extra],
     };
   } catch {
     return fallback(lang);
