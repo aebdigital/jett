@@ -44,7 +44,7 @@ export default function Header({ lang = "sk" }: { lang?: Lang }) {
             <Image src="/Color-logo-with-background-Photoroom-removebg-preview.png" alt="JetTransfer" width={700} height={152} priority className="h-9 w-auto sm:h-10" />
           </a>
 
-          <nav className="ml-auto hidden items-center gap-7 md:flex" aria-label="Navigation">
+          <nav className="ml-auto hidden items-center gap-7 lg:flex" aria-label="Navigation">
             {LINKS.map((l) => (
               <a key={l.href} href={l.href} className="text-sm font-medium text-neutral-300 transition hover:text-gold focus-visible:rounded focus-visible:outline-2 focus-visible:outline-gold">
                 {l.label}
@@ -52,13 +52,13 @@ export default function Header({ lang = "sk" }: { lang?: Lang }) {
             ))}
           </nav>
 
-          <a href={otherLang.href} className="hidden rounded-full border border-white/20 px-3.5 py-2 text-xs font-bold tracking-wide text-neutral-300 transition hover:border-gold hover:text-gold md:inline-block" aria-label="Switch language">
+          <a href={otherLang.href} className="hidden rounded-full border border-white/20 px-3.5 py-2 text-xs font-bold tracking-wide text-neutral-300 transition hover:border-gold hover:text-gold lg:inline-block" aria-label="Switch language">
             {otherLang.label}
           </a>
 
           <a
             href="tel:+421905300120"
-            className="hidden rounded-full border border-gold/60 px-5 py-2.5 text-sm font-semibold text-gold transition hover:bg-gold hover:text-ink focus-visible:outline-2 focus-visible:outline-gold md:inline-block"
+            className="hidden rounded-full border border-gold/60 px-5 py-2.5 text-sm font-semibold text-gold transition hover:bg-gold hover:text-ink focus-visible:outline-2 focus-visible:outline-gold lg:inline-block"
           >
             +421 905 300 120
           </a>
@@ -67,7 +67,7 @@ export default function Header({ lang = "sk" }: { lang?: Lang }) {
             onClick={() => setOpen(true)}
             aria-label="Menu"
             aria-expanded={open}
-            className="ml-auto grid h-11 w-11 place-items-center rounded-lg border border-white/15 text-white transition hover:border-gold md:hidden"
+            className="ml-auto grid h-11 w-11 place-items-center rounded-lg border border-white/15 text-white transition hover:border-gold lg:hidden"
           >
             <span className="flex w-5 flex-col gap-1.5" aria-hidden>
               <i className="h-0.5 rounded bg-current" />
@@ -82,13 +82,13 @@ export default function Header({ lang = "sk" }: { lang?: Lang }) {
       <div
         onClick={() => setOpen(false)}
         aria-hidden
-        className={`fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm transition-opacity duration-300 md:hidden ${open ? "opacity-100" : "pointer-events-none opacity-0"}`}
+        className={`fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${open ? "opacity-100" : "pointer-events-none opacity-0"}`}
       />
 
       {/* full-height drawer sliding in from the right */}
       <aside
         aria-label="Mobile navigation"
-        className={`fixed right-0 top-0 z-[70] flex h-dvh w-[82%] max-w-sm flex-col border-l border-white/10 bg-ink-2 px-7 pb-8 pt-5 shadow-2xl shadow-black/60 transition-transform duration-500 ease-[cubic-bezier(0.2,0.6,0.2,1)] md:hidden ${open ? "translate-x-0" : "translate-x-full"}`}
+        className={`fixed right-0 top-0 z-[70] flex h-dvh w-[82%] max-w-sm flex-col border-l border-white/10 bg-ink-2 px-7 pb-8 pt-5 shadow-2xl shadow-black/60 transition-transform duration-500 ease-[cubic-bezier(0.2,0.6,0.2,1)] lg:hidden ${open ? "translate-x-0" : "translate-x-full"}`}
       >
         <div className="flex items-center justify-between">
           <Image src="/Color-logo-with-background-Photoroom-removebg-preview.png" alt="JetTransfer" width={700} height={152} className="h-8 w-auto" />
